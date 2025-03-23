@@ -1,9 +1,10 @@
 #include <stdio.h>
+#include <limits.h>
 
 int main() {
     char i;
     unsigned char j;
-    printf("El tamaño de char es: %zu bytes\n", sizeof(i));
-    printf("El tamaño de unsigned char es: %zu bytes\n", sizeof(j));
+    printf("Rango de char: (%d; %d)\n", CHAR_MIN, CHAR_MAX);
+    printf("Rango de unsigned char: (0; %u)\n", UCHAR_MAX);
     return 0;
 }
