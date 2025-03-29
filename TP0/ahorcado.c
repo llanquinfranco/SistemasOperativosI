@@ -5,7 +5,7 @@
 int main() {
 
     int c, intentos = 5, aciertos = 0, exito;
-    char palabra[] = "queseyo";
+    char palabra[] = "sistemasoperativosi";
     int longitud = strlen(palabra);
     char oculta[longitud + 1];
 
