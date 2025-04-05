@@ -1,5 +1,8 @@
 
-/* in file ejercicio4.c */
+/* in file ejercicio10.c */
+extern	shellcmd  ahorcado	(int32, char *[]);
+
+/* in file ejercicio6.c */
 extern	shellcmd  ejercicio6	(int32, char *[]);
 
 /* in file ejercicio4.c */
