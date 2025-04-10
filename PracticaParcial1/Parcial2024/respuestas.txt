@@ -4,11 +4,13 @@ a) Cuando un proceso espera por un semaforo en XINU, y el semaforo no esta
 disponible, el proceso pasa a estado "waiting", que en XINU es el estado
 "PR_WAIT" (explicado en xinu-pc/system/wait.c)
 
+
 b) El quantum en XINU es de 2ms y esta definido en xinu-pc/include/kernel.h.
 Como XINU usa el algoritmo de planificacion Robin-Round combinado 
 con prioridades, debemos calcular T = 1 segundo / quantum.
         T = 1000ms/2ms = 500
 XINU le asigna 500 rafagas de CPU a los procesos en un segundo
+
 
 c) La funcion control en XINU sirve para controlar un dispositivo o un
 controlador (por ejemplo, configurar el modo del controlador)
@@ -16,12 +18,15 @@ Esta funcion tiene 4 argumentos y son: el descriptor del dispositivo, la
 funcion de control especifica, y 2 parametros especificos de la funcion
 (Todo explicado en xinu-pc/system/control.c).
 
+
 d) Cuando un proceso es creado, se le pueden pasar una cantidad de parametros
 entera de 32 bits sin signo, osea 2^32 parametros (explicado en
 xinu-pc/system/create.c)    VER BIEN
 
+
 e) En XINU, los procesos hijos no se terminan automaticamente cuando el proceso
 padre finaliza, ya que cada proceso es independiente
+
 
 f) En el directorio 'system/' de XINU se encuentran los codigos fuentes del
 kernel. Esto incluye las implementaciones de los system calls (como resume o create),

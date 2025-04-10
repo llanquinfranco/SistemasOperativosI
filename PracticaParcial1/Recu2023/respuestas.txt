@@ -12,14 +12,24 @@ cambiar el estado del proceso de 'PR_SLEEP' a 'PR_READY' y colocarlo en la cola 
 (Explicado en xinu-pc/system/wakeup.c y xinu-pc/system/ready.c)
 
 
-c) 
-
+c) Si el Proceso 1 usó 20 ráfagas de CPU y el Proceso 2 tiene el 80% del uso de la CPU, 
+entonces el Proceso 1 solo accede al 20% del tiempo. Esto significa que, por cada 100 unidades
+de tiempo de CPU total, el Proceso 1 solo ejecuta durante 20, lo cual implica que para usar 20
+ráfagas, el sistema necesitó 100 ráfagas en total. Como solo el 20% de tiempo era para él, 
+necesitó esperar durante el otro 80% restante del tiempo, entonces:
+    Tiempo total transcurrido: 20/0.2 = 100
+    Tiempo efectivo de CPU del Proceso 1: 20
+    Tiempo de espera = 100 - 20 = 80 unidades
+Por lo tanto, el tiempo de espera del proceso 1 es 80 unidades de tiempo.
 
 
 d) Funciones propias: 
-
+    controlProcesos
+    encontrarPrimos
 
 Funcion de biblioteca de C:
+    printf(): para imprimir en pantalla (incluida en <stdio.h>)
 
-
-System calls:
+System calls de XINU:
+    create: crea un nuevo proceso
+    resume: inicia o reanuda la ejecucion de un proceso

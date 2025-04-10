@@ -1,0 +1,60 @@
+PUNTO 2
+
+c)  System calls de XINU:
+getpid: devuelve el pid del proceso actual
+create: crea un nuevo proceso
+resume: inicia o reanuda un proceso
+control: controla dispositivos (como la consola)
+receive: espera un mensaje y lo recibe
+exit: termina el proceso actual
+sleep: suspende un proceso por un segundos
+kill: mata/finaliza un proceso
+send: envia un mensaje a otro proceso
+
+    Funcion de una biblioteca de C:
+printf: imprime en pantalla
+getchar: lee un caracter desde la consola
+strcmp: compara dos cadenas
+
+
+d) Para corroborar si una funcion es en realidad una llamada al sistema
+de XINU, simplemente vemos el directorio xinu-pc/system/. 
+Si en ese directorio encontramos un archivo llamado funcion.c (funcion es
+el nombre de la funcion que queremos corroborar), entonces si se trata de 
+un system call de XINU
+
+
+e) Procesos activos en el sistema XINU cuando el usuario ya esta esta jugando
+al ahorcado:
+entrada
+computo
+visual
+fin
+ahorcado(principal)
+Ademas de otros procesos internos del sistema XINU corriendo en segundo plano
+
+
+PUNTO 3
+
+a)  hecho en la imagen
+
+
+b)  Tiempo de Turnaround: P1=12; P2=72; P3=53; P4=32; P5=7
+    Tiempo de Turnaround promedio: (12+72+53+32+7)/5 = 35,2ms
+
+
+c)  Tiempo de Espera: P1=0; P2=52; P3=33; P4=12; P5=2
+    Tiempo de Espera promedio: (0+52+33+12+2)/5 = 19,8ms
+
+
+d)  Con SJF apropiativo (le quita la CPU si llega uno con menos rafagas)
+    Hecho en la imagen tambien
+
+Tiempo de Turnaround: P1=27; P2=52; P3=20; P4=52; P5=5
+Tiempo de Turnaround promedio: (27+52+20+52+5)/5 = 31,2ms
+
+Tiempo de Espera: P1=15; P2=32; P3=0; P4=32; P5=0
+Tiempo de Espera promedio: (15+32+0+32+0)/5 = 15,8ms
+
+Si, el planificador SJF apropiativo es mas eficiente en cuanto a tiempo
+de turnaround promedio y tiempo de espera promedio en esta ejecucion
