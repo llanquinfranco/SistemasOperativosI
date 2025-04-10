@@ -1,5 +1,5 @@
 /* in file primos.c */
-extern	shellcmd  controlProcesos	(int32, char *[]);
+extern	shellcmd  primos	(int32, char *[]);
 
 /* in file xsh_argecho.c */
 extern	shellcmd  xsh_argecho	(int32, char *[]);
