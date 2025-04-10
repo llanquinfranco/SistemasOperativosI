@@ -1,0 +1,25 @@
+PUNTO 2
+
+a) En el programa del ejercicio 1 no se produce deadlock ya que no hay recursos compartidos
+bloqueantes entre los procesos. Esto se debe a que ambos procesos trabajan sobre rangos de 
+numeros distintos y no comparten semaforos, o algun recurso que pueda generar un espera
+circular
+
+
+b) Para poner en estado de listo a un proceso que estaba durmiendo pero su tiempo de dormir 
+finalizo, XINU utiliza la llamada al sistema 'wakeup', que a su vez invoca a ready(), para
+cambiar el estado del proceso de 'PR_SLEEP' a 'PR_READY' y colocarlo en la cola de listos.
+(Explicado en xinu-pc/system/wakeup.c y xinu-pc/system/ready.c)
+
+
+c) 
+
+
+
+d) Funciones propias: 
+
+
+Funcion de biblioteca de C:
+
+
+System calls:

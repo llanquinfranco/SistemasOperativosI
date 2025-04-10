@@ -1,0 +1,18 @@
+PUNTO 5
+
+a) Si corredor_b le cambia la prioridad a control_race para que tenga prioridad
+10, el proceso control_race pasa al estado 'ready', que en XINU es el estado
+'PR_READY', ya que es desalojado por el planificador y colocado en la cola de
+procesos listos.
+
+
+b) Cuando un proceso en XINU espera por un semaforo y este no esta disponible,
+pasa al estado 'waiting', que en XINU es el estado 'PR_WAIT'.
+(Explicado en xinu-pc/system/wait.c)
+
+
+c) El quantum de XINU es de 2ms y esta definido en xinu-pc/include/kernel.h.
+Para saber cuantas veces por segundo XINU le asigna rafagas de CPU a cada
+proceso, podemos calcular T = 1segundo/quantum = 1000ms/2ms = 500.
+XINU le asigna hasta 500 rafagas de CPU a los procesos en un segundo.
+

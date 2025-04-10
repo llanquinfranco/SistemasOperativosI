@@ -24,7 +24,7 @@ void calcularConSleep(int minimo, int maximo) {
             printf("%d\n", i);
             contador++;
         }
-        if( contador == 100) {
+        if(contador == 100) {
             sleepms(10);
         }
     }
