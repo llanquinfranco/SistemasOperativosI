@@ -28,7 +28,8 @@ int file_get_size(const char nombreArchivo[]) {
 }
 
 int main() {
-    const char *nombreArchivo = "/etc/hostname";
+    // Uso otra ruta ya que mi linux no tiene el archivo /usr/share/doc/libsdl1.2-dev/docs.html
+    const char *nombreArchivo = "/etc/hostname";    
 
     int cantBytes = file_get_size(nombreArchivo);
 
@@ -55,10 +56,11 @@ int main() {
     close(file_fd);
     
     // Imprimir en orden inverso
-    for(int i = cantBytes - 1; i >= 0; i--) {
+    for(int i = cantBytes - 1; i >= 0; i--) {   // cantBytes - 2 para evitar salto de linea en terminal ¿?
         putchar(contenido[i]);
     }
-    putchar('\n');  // Mejora salida por terminal
+    putchar('\n');      // Mejora salida por terminal
+    free(contenido);    // Libera la memoria dinamica reservada anteriormente
 
     return 0;
 }
