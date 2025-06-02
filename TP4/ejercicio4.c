@@ -1,66 +1,93 @@
 #include <stdio.h>
-#include <stdlib.h>     // Para malloc(), exit()
-#include <fcntl.h>      // Para constantes O_*
-#include <unistd.h>     // Para open(), read(), close()
+#include <stdlib.h>     // malloc(), exit()
+#include <fcntl.h>      // open(), constantes O_
+#include <unistd.h>     // read(), close()
 
-
-int file_get_size(const char nombreArchivo[]) {
+int file_get_size(const char nombre_de_archivo[]) {
     const int SIZE = 1024; // Tamaño de lectura por bloque
-    int tamaño = 0;
+    char buffer[SIZE];
+    int tamanio = 0;
+    int leido;
 
     // Abrir el archivo solo para lectura
-    int file_fd = open(nombreArchivo, O_RDONLY);
-    if (file_fd == -1) {
+    int fd = open(nombre_de_archivo, O_RDONLY);
+    if (fd == -1) {
         printf("Error al abrir el archivo\n");
         exit(-1);
     }
 
-    char buffer[SIZE];
-    int bytesLeidos;
-
-    while((bytesLeidos = read(file_fd, buffer, SIZE)) > 0) {
-        tamaño = tamaño + bytesLeidos;
+    // Contar por bloques
+    while ((leido = read(fd, buffer, SIZE)) > 0) {
+        if (leido == -1) {
+            printf("Error al leer el archivo\n");
+            close(fd);
+            exit(-1);
+        }
+        tamanio = tamanio + leido;
     }
 
-    close(file_fd);
-
-    return tamaño;
+    close(fd);
+    return tamanio;
 }
 
 int main() {
     // Uso otra ruta ya que mi linux no tiene el archivo /usr/share/doc/libsdl1.2-dev/docs.html
-    const char *nombreArchivo = "/etc/hostname";    
-
-    int cantBytes = file_get_size(nombreArchivo);
-
-    // Reservar espacio dinamicamente
-    char *contenido = malloc(cantBytes);
-    if (contenido == NULL) {
-        printf("Error al abrir el archivo\n");
-        return -1;
-    }
+    const char *nombreArchivo = "/etc/hostname";
+    int tamanioArchivo = file_get_size(nombreArchivo);
 
     // Reabrir archivo para leer su contenido
-    int file_fd = open(nombreArchivo, O_RDONLY);
-    if (file_fd == -1) {
+    int fd = open(nombreArchivo, O_RDONLY);
+    if (fd == -1) {
         printf("Error al abrir el archivo\n");
         return -1;
     }
 
-    // Leer todo el contenido
-    int totalLeido = 0;
-    int leido;
-    while((leido = read(file_fd, contenido + totalLeido, cantBytes - totalLeido)) > 0) {
-        totalLeido = totalLeido + leido;
+    // Reservar espacio dinamicamente
+    char *puntero = malloc(tamanioArchivo);
+    if (puntero == NULL) {
+        close(fd);
+        printf("Error al reservar memoria dinamicamente\n");
+        return -1;
     }
-    close(file_fd);
     
-    // Imprimir en orden inverso
-    for(int i = cantBytes - 1; i >= 0; i--) {   // cantBytes - 2 para evitar salto de linea en terminal ¿?
-        putchar(contenido[i]);
+    // Leer todo el contenido y guardarlo en memoria ¿?
+    int estado = read(fd, puntero, tamanioArchivo);
+    if(estado < 0) {
+        free(puntero);
+        close(fd);
+        printf("Error al leer el archivo\n");
+        return -1;
     }
-    putchar('\n');      // Mejora salida por terminal
-    free(contenido);    // Libera la memoria dinamica reservada anteriormente
+
+    // Imprimir en orden inverso
+    for(int i = tamanioArchivo - 1; i >= 0; i--) {
+        printf("%c", puntero[i]);
+    }
+    printf("\n");
+
+    free(puntero);
+    close(fd);
 
     return 0;
 }
+
+/*
+// Imprimir en orden inverso (sin salto de linea apenas empieza)
+
+for(int i = tamanioArchivo - 1; i >= 0; i--) {
+    if(puntero[i] != '\n') {
+        printf("%c", puntero[i]);
+    }
+}
+printf("\n");
+
+o
+
+int start = tamanioArchivo - 1;
+if (puntero[start] == '\n') {
+    start--;
+}
+for(int i = start; i >= 0; i--) {
+    printf("%c", puntero[i]);
+}
+*/
