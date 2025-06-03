@@ -17,7 +17,7 @@ int file_get_size(const char nombre_de_archivo[]) {
 
     // Contar caracter por caracter
     while(1) {
-        estado = read(fd, &c, 1);
+        estado = read(fd, &c, 1);   // El puntero interno de fd avanza 1 caracter en cada iteracion
         if(estado == -1) {
             close(fd);
             printf("Error al leer el archivo\n");
@@ -46,7 +46,7 @@ int main() {
     }
 
     // Reservar espacio dinamicamente
-    char *puntero = malloc(tamanioArchivo);
+    char *puntero = malloc(tamanioArchivo); // Puntero apunta al principio de la memoria reservada (siempre)
     if (puntero == NULL) {
         close(fd);
         printf("Error al reservar memoria dinamicamente\n");

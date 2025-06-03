@@ -1,0 +1,35 @@
+Se cuenta con un pendrive de 32GB. En una partición se ha creado un sistema de archivos FAT16. Los
+bloques del disco (llamados clusters en FAT) que utiliza el sistema operativo son de 4KB de tamaño.
+NOTA: FAT16 utiliza 2 bytes para señalar/apuntar bloques/clusters.
+
+a. ¿Cuánto espacio del pendrive puede aprovechar esta FAT16?
+
+Tamaño del cluster = 4KB = 4096 bytes
+Entradas en la tabla FAT son de: 2 bytes = 16 bits
+Cantidad maxima de clusters que pueden ser señalados: 2^16 = 65536 clusters
+
+El espacio maximo del pendrive que puede ser aprovechado por esta FAT16 es:
+    4096 bytes x 65536 clusters = 268.435.456 bytes = 262.144 KB = 256 MB
+
+Conclusion: Con FAT16 y clusters de 4KB, esta FAT16 puede aprovechar solamente
+256MB de los 32GB de todo el pendrive
+
+-----------------------------------------------------------------------------------
+
+b. ¿Cuánto ocupa la tabla FAT en memoria para este sistema de archivos?
+
+La tabla FAT tiene una entrada por cada cluster y cada entrada utiliza 2 bytes 
+para apuntar a cada cluster, por lo tanto, la tabla FAT ocupa en memoria:
+    2 bytes x 65536 clusters = 131.072 bytes = 128KB
+
+Conclusion: La tabla FAT de este sistema de archivos ocupa 128KB
+
+-----------------------------------------------------------------------------------
+
+c. ¿Cuál es el tamaño máximo de un archivo en este contexto?
+
+Suponiendo que un archivo ocupa todos los clusters del FAT16 y cada cluster es de 4KB,
+entonces el tamaño del archivo seria de:
+    4096 bytes x 65536 clusters = 268.435.456 bytes = 262.144 KB = 256 MB
+
+Conclusion: El tamaño maximo de un archivo en este contexto sería de 256MB

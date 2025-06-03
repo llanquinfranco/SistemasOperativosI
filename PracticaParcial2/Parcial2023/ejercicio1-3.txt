@@ -1,0 +1,111 @@
+ps aux | grep ejercicio1
+cat /proc/18345/maps
+
+
+Ejercicio 1. c)
+1. Utilizando /proc/PID/maps indique las direcciones virtuales del segmento donde se encuentra la
+memoria dinámica solicitada al sistema operativo (como tip podría observar maps antes de solicitar la
+memoria al SO, y luego de haberla solicitado, y detectar cuál es o son los segmentos nuevos).
+
+
+fran@fran-ASUS:~$ cat /proc/18345/maps
+5bd99427d000-5bd99427e000 r--p 00000000 103:05 395405                    /home/fran/Escritorio/22 - Sistemas Operativos I (2025)/TP/Codigos/PracticaParcial2/Parcial2023/ejercicio1
+5bd99427e000-5bd99427f000 r-xp 00001000 103:05 395405                    /home/fran/Escritorio/22 - Sistemas Operativos I (2025)/TP/Codigos/PracticaParcial2/Parcial2023/ejercicio1
+5bd99427f000-5bd994280000 r--p 00002000 103:05 395405                    /home/fran/Escritorio/22 - Sistemas Operativos I (2025)/TP/Codigos/PracticaParcial2/Parcial2023/ejercicio1
+5bd994280000-5bd994281000 r--p 00002000 103:05 395405                    /home/fran/Escritorio/22 - Sistemas Operativos I (2025)/TP/Codigos/PracticaParcial2/Parcial2023/ejercicio1
+5bd994281000-5bd994282000 rw-p 00003000 103:05 395405                    /home/fran/Escritorio/22 - Sistemas Operativos I (2025)/TP/Codigos/PracticaParcial2/Parcial2023/ejercicio1
+785455e00000-785455e28000 r--p 00000000 103:05 817686                    /usr/lib/x86_64-linux-gnu/libc.so.6
+785455e28000-785455fb0000 r-xp 00028000 103:05 817686                    /usr/lib/x86_64-linux-gnu/libc.so.6
+785455fb0000-785455fff000 r--p 001b0000 103:05 817686                    /usr/lib/x86_64-linux-gnu/libc.so.6
+785455fff000-785456003000 r--p 001fe000 103:05 817686                    /usr/lib/x86_64-linux-gnu/libc.so.6
+785456003000-785456005000 rw-p 00202000 103:05 817686                    /usr/lib/x86_64-linux-gnu/libc.so.6
+785456005000-785456012000 rw-p 00000000 00:00 0 
+785456072000-785456075000 rw-p 00000000 00:00 0 
+785456089000-78545608b000 rw-p 00000000 00:00 0 
+78545608b000-78545608c000 r--p 00000000 103:05 817256                    /usr/lib/x86_64-linux-gnu/ld-linux-x86-64.so.2
+78545608c000-7854560b7000 r-xp 00001000 103:05 817256                    /usr/lib/x86_64-linux-gnu/ld-linux-x86-64.so.2
+7854560b7000-7854560c1000 r--p 0002c000 103:05 817256                    /usr/lib/x86_64-linux-gnu/ld-linux-x86-64.so.2
+7854560c1000-7854560c3000 r--p 00036000 103:05 817256                    /usr/lib/x86_64-linux-gnu/ld-linux-x86-64.so.2
+7854560c3000-7854560c5000 rw-p 00038000 103:05 817256                    /usr/lib/x86_64-linux-gnu/ld-linux-x86-64.so.2
+7ffe87fe5000-7ffe88006000 rw-p 00000000 00:00 0                          [stack]
+7ffe88164000-7ffe88168000 r--p 00000000 00:00 0                          [vvar]
+7ffe88168000-7ffe8816a000 r-xp 00000000 00:00 0                          [vdso]
+ffffffffff600000-ffffffffff601000 --xp 00000000 00:00 0                  [vsyscall]
+
+fran@fran-ASUS:~$ cat /proc/18345/maps
+5bd99427d000-5bd99427e000 r--p 00000000 103:05 395405                    /home/fran/Escritorio/22 - Sistemas Operativos I (2025)/TP/Codigos/PracticaParcial2/Parcial2023/ejercicio1
+5bd99427e000-5bd99427f000 r-xp 00001000 103:05 395405                    /home/fran/Escritorio/22 - Sistemas Operativos I (2025)/TP/Codigos/PracticaParcial2/Parcial2023/ejercicio1
+5bd99427f000-5bd994280000 r--p 00002000 103:05 395405                    /home/fran/Escritorio/22 - Sistemas Operativos I (2025)/TP/Codigos/PracticaParcial2/Parcial2023/ejercicio1
+5bd994280000-5bd994281000 r--p 00002000 103:05 395405                    /home/fran/Escritorio/22 - Sistemas Operativos I (2025)/TP/Codigos/PracticaParcial2/Parcial2023/ejercicio1
+5bd994281000-5bd994282000 rw-p 00003000 103:05 395405                    /home/fran/Escritorio/22 - Sistemas Operativos I (2025)/TP/Codigos/PracticaParcial2/Parcial2023/ejercicio1
+5bd9a584f000-5bd9a5870000 rw-p 00000000 00:00 0                          [heap]                                             ------- ACA ---------
+785455e00000-785455e28000 r--p 00000000 103:05 817686                    /usr/lib/x86_64-linux-gnu/libc.so.6
+785455e28000-785455fb0000 r-xp 00028000 103:05 817686                    /usr/lib/x86_64-linux-gnu/libc.so.6
+785455fb0000-785455fff000 r--p 001b0000 103:05 817686                    /usr/lib/x86_64-linux-gnu/libc.so.6
+785455fff000-785456003000 r--p 001fe000 103:05 817686                    /usr/lib/x86_64-linux-gnu/libc.so.6
+785456003000-785456005000 rw-p 00202000 103:05 817686                    /usr/lib/x86_64-linux-gnu/libc.so.6
+785456005000-785456012000 rw-p 00000000 00:00 0 
+785456072000-785456075000 rw-p 00000000 00:00 0 
+785456089000-78545608b000 rw-p 00000000 00:00 0 
+78545608b000-78545608c000 r--p 00000000 103:05 817256                    /usr/lib/x86_64-linux-gnu/ld-linux-x86-64.so.2
+78545608c000-7854560b7000 r-xp 00001000 103:05 817256                    /usr/lib/x86_64-linux-gnu/ld-linux-x86-64.so.2
+7854560b7000-7854560c1000 r--p 0002c000 103:05 817256                    /usr/lib/x86_64-linux-gnu/ld-linux-x86-64.so.2
+7854560c1000-7854560c3000 r--p 00036000 103:05 817256                    /usr/lib/x86_64-linux-gnu/ld-linux-x86-64.so.2
+7854560c3000-7854560c5000 rw-p 00038000 103:05 817256                    /usr/lib/x86_64-linux-gnu/ld-linux-x86-64.so.2
+7ffe87fe5000-7ffe88006000 rw-p 00000000 00:00 0                          [stack]
+7ffe88164000-7ffe88168000 r--p 00000000 00:00 0                          [vvar]
+7ffe88168000-7ffe8816a000 r-xp 00000000 00:00 0                          [vdso]
+ffffffffff600000-ffffffffff601000 --xp 00000000 00:00 0                  [vsyscall]
+
+Direccion virtual del inicio del segmento de memoria dinamico: 0x5bd9a584f2a0 (printf)
+
+2. Indique tambien a qué segmento de memoria del proceso pertenece.
+
+El segmento nuevo que aparece luego de realizar la llamada a malloc corresponde
+al segmento heap del proceso.
+La memoria dinamica solictada se encuentra en el rango de direcciones virtuales: 
+[5bd9a584f000 - 5bd9a5870000].
+Por lo tanto, la direccion 0x5bd9a584f2a0 pertenece al segmento de heap, que es 
+utilizado por el proceso para almacenar memoria dinamica solicitada al SO.
+
+------------------------------------------------------------------------------------------------------------
+Ejercicio 3.
+1. Si las páginas del sistema de memoria virtual en los sistemas Linux de los laboratorios son de 4KB, 
+¿cuales son los 12 bits menos significativos de la dirección física que corresponde a la dirección virtual
+obtenida en el ejercicio 1.b.? Es decir, luego de que el sistema realizó la traducción de la dirección 
+virtual a física. Utilice el sistema hexadecimal para especificar la respuesta.
+
+Dada la direccion virtual obtenida en el ejercicio b: 0x5bd9a584f2a0, y considerando que el tamaño de
+pagina es de 4KB (2^12 bytes), los 12 bits menos significativos de la direccion fisica que corresponden
+a esta direccion virtual, son los bits: 0xF2A0
+
+
+
+2. En C en Linux existen las funciones shm_open(), ftruncate() y mmap() para crear un segmento de memoria
+compartida que luego se puede compartir con otros procesos para comunicación entre procesos.
+Indique en XINU cuáles serían las funciones en C equivalentes, y si no existen, expliqué cómo se logra ese
+mecanismo de comunicación entre procesos.
+
+En XINU no existen estas funciones ni tampoco funciones equivalentes directas, ya que XINU es un sistema
+operativo embebido minimalista que no implementa memoria virtual ni sistema de archivos POSIX.
+
+La comunicación entre los procesos puede realizarse de las siguientes maneras:
+    - Comunicacion directa (conocida como pasaje de mensajes):  usando las funciones send() y receive()
+    - Comunicacion indirecta: utilizando una region de memoria comun/global en la que el programador
+    debe gestionar manualmente la sincronizacion y controlar el acceso
+
+
+
+3. Dado el diagrama de un UNIX file system, podemos notar que:
+    - El sistema tiene una region de i-nodos de 4MB = 4.096KB = 4.194.304 bytes
+    - Cada i-nodo ocupa 64 bytes
+
+Por lo tanto, el numero maximo de inodos es de: 4.194.304 bytes / 64 bytes = 65.536
+
+Este sistema de archivos puede almacenar como maximo 65.536 archivos, ya que cada archivo requiere un i-nodo
+
+
+
+
+
+
