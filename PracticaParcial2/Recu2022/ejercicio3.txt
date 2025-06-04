@@ -1,0 +1,28 @@
+Ejercicio 3. Implementación de sistemas de archivos.
+
+En un disco de 100GB se cuenta con una partición en donde se ha creado un sistema de archivos de tipo
+UNIX/Linux. Se sabe que cada bloque en el disco es de 8KB. También, se conoce que cada inodo contiene
+13 entradas directas, una indirecta, y una doble indirecta. Los punteros a bloques de disco ocupan 4 bytes.
+El inodo del directorio raíz ya se encuentra en memoria (el sistema operativo ya puede acceder a él). Todas
+las entradas de un directorio caben en un sólo bloque del filesystem/disco. Las entradas de directorio
+están compuestas 32 bytes: 4 bytes para el nro de inodo y 28 bytes para el nombre del archivo/directorio.
+
+a. ¿Cuál es el tamaño máximo de un archivo en este sistema de archivos?
+
+
+
+
+
+
+
+
+b. ¿Cuántos archivos y directorios caben debajo de un directorio?
+
+
+
+
+
+
+
+
+c. ¿Sería conveniente este sistema de archivos para almacenar películas bajadas con torrent?
