@@ -36,7 +36,7 @@ int obtenerTamanio(const char rutaDeArchivo[]) {
 }
 
 int main() {
-    const char *rutaArchivo = "/home/fran/Escritorio/22 - Sistemas Operativos I (2025)/TP/Codigos/PracticaParcial2/Parcial2023/cat.pgm";
+    const char *rutaArchivo = "cat.pgm";
     int tamanioArchivo = obtenerTamanio(rutaArchivo);
 
     // Rebrir el archivo para leer su contenido
@@ -81,15 +81,12 @@ int main() {
     }
 
     // Ahora creo el archivo nuevo
-    const char *nuevo = "/home/fran/Escritorio/22 - Sistemas Operativos I (2025)/TP/Codigos/PracticaParcial2/Parcial2023/cat2.pgm";
+    const char *nuevo = "cat2.pgm";
     fd = open(nuevo, O_RDWR | O_CREAT | O_TRUNC, 0666);     // Le pide al sistema operativo crear un archivo nuevo
     write(fd, &imagenNueva[0], tamanioArchivo);
 
     // b. Agregue sentencias para que emita la direccion virtual
     printf("Direccion virtual del inicio del segmento de memoria dinamico: %p\n", puntero);
-
-
-
 
     free(puntero);
     return 0;

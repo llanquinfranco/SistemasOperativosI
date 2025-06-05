@@ -35,7 +35,7 @@ int obtenerTamanio(const char rutaDeArchivo[]) {
 
 int main() {
     // a. Leer contenido de principe_y_mendigo.txt, y colocarlo en memoria dinamica
-    const char *rutaArchivo = "/home/fran/Escritorio/22 - Sistemas Operativos I (2025)/TP/Codigos/PracticaParcial2/Parcial2022/principe_y_mendigo.txt";
+    const char *rutaArchivo = "principe_y_mendigo.txt";
     int tamanioArchivo = obtenerTamanio(rutaArchivo);
 
     // Reabrir archivo para leer su contenido

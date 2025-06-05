@@ -9,20 +9,40 @@ están compuestas 32 bytes: 4 bytes para el nro de inodo y 28 bytes para el nomb
 
 a. ¿Cuál es el tamaño máximo de un archivo en este sistema de archivos?
 
+Se calcula sumando el espacio accesible por:
 
+1. 13 punteros directos -> Cada puntero (entrada) apunta directamente a un bloque de 8KB
+    - 13 x 8KB = 104KB
 
+2. 1 puntero indirecto -> Este puntero apunta a un bloque que contiene otros punteros a bloques de datos:
+    - Un bloque de 8KB puede contener: 8192 bytes / 4 bytes por puntero = 2048 punteros
+    - Cada puntero apunta a un bloque de 8KB: 2048 x 8KB = 16.384KB = 16MB
 
+3. 1 puntero doble-indirecto -> Este puntero apunta a un bloque que contiene punteros a otros bloques que
+contienen punteros a bloques de datos:
+    - Primer nivel: 2048 punteros a bloques de punteros
+    - Segundo nivel: cada uno con 2048 punteros a bloques de datos
+    - Cantidad total de punteros: 2048 x 2048 = 4.194.304 punteros
+    - Cada puntero apunta a un bloque de 8KB: 4.194.304 x 8KB = 33.554.432KB = 32.768MB = 32GB
 
+Total: 104KB + 16.384KB + 33.554.432KB = 33.570.920KB (32,01GB)
 
+El tamaño maximo de un archivo en este sistema de archivos es de aproximadamente 32GB
 
+-----------------------------------------------------------------------------------------------------------
 
 b. ¿Cuántos archivos y directorios caben debajo de un directorio?
 
+Teniendo en cuenta que el bloque de disco es de 8KB o 8192 bytes, que TODAS las entradas a directorios
+caben en un solo bloque, y que cada entrada esta compuesta por 32 bytes, entonces:
+    8192 bytes / 32 bytes = 256
 
+Dentro de un directorio caben hasta 256 archivos y/o directorios
 
-
-
-
-
+-----------------------------------------------------------------------------------------------------------
 
 c. ¿Sería conveniente este sistema de archivos para almacenar películas bajadas con torrent?
+
+Este sistema si seria conveniente para almacenar peliculas bajadas por torrent, si tenemos en cuenta que
+estas no superan los 32GB, que cada una se guarda en un subdirectorio propio, y que solo bajamos la 
+pelicula y ningun otro archivo mas (ya que solo se permiten 256 archivos por directorio como maximo).

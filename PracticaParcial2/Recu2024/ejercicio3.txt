@@ -1,0 +1,59 @@
+3. Responda:
+
+a. Describa el sistema de pasajes de mensajes de XINU, con sus características (si es síncrónico o asincrónico,
+si usa buffer, si no utiliza, etc).
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+b. Defienda o critique la frase: Debido a que las aplicaciones utilizan el paradigma open-read-write-close para
+acceder a los dispositivos, tanto en XINU como en UNIX (Linux, MAC OS, etc), se hace difícil utilizar los
+dispositivos, porque se confunden con archivos.
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+c. Defienda o critique la frase: Un proceso fue programado con threads. Si un thread realiza un read(), y el
+read() bloquea, todos los threads y el proceso se bloquea.
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+d. Los desarrolladores de firefox y chrome decidieron que cada “pestaña” sea un proceso, en vez de un
+thread. ¿Por qué piensa que se tomó esta decisión?.

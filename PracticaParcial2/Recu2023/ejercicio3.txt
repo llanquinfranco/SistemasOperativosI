@@ -1,0 +1,42 @@
+Ejercicio 3.
+
+1. ¿Qué problemas podría ocasionar a su sistema XINU que un programa no utilice apropiadamente el
+paradigma open(), read(), close()?. Por ejemplo, si no se utiliza apropiadamente en la resolución del
+ejercicio 2. Justifique su respuesta.
+
+En XINU, si se omite open() antes de read() o write(), el descriptor puede no esta bien inicializado,
+causando errores o lecturas/escrituras invalidas. No cerrar con close() puede generar fugas de 
+descriptores, lo que en un sistema con recursos limitados como XINU, puede hacer que otros procesos
+no puedan abrir archivos o dispositivos. Ademas, no seguir el orden correcto rompe el ciclo esperado
+de uso de dispositivos, afectando la estabilidad del sistema.
+
+----------------------------------------------------------------------------------------------------------
+
+2. Es de conocimiento general que los sistemas Windows de empresas y personas sufren ataques de distintas
+índoles todo el tiempo. Millones de agujeros de seguridad en Windows se han reportado en internet en los
+últimos 30 años. Si usted desarrolla dos programas en Windows (prog1 y prog2), y dos programas en XINU
+(prog1 y prog2), responda: ¿en qué sistema es más sencillo realizar un ataque desde prog1 a prog2?.
+Justifique su respuesta.
+
+Es mas sencillo realizar un ataque en Windows. Aunque tiene protecciones, su complejidad y multiples
+servicios exponen mas puntos vulnerables. En cambio, XINU es mas simple, con procesos sin aislamiento
+de memoria, pero no tiene red, usuarios ni privilegios y se usa mayormente para fines educativos. Por eso,
+aunque en teoria XINU permite acceso entre procesos, en la practica es mas dificil montar un ataque real.
+
+----------------------------------------------------------------------------------------------------------
+
+3. Sean las siguientes estructuras de dos sistemas de archivos: FAT y un FS UNIX.
+    - Suponga que el i-nodo de un archivo deseado ya está en RAM en el UNIX FS.
+    - Suponga que la FAT está en RAM.
+    - Suponga que en ambos sistemas el tamaño máximo para un archivo son iguales, y los bloques de datos 
+son del mismo tamaño.
+Si sólo se desea conocer los números de bloques en el disco que corresponden a los datos del archivo
+deseado (no su contenido), ¿en cuál de los dos sistemas de archivos sería más veloz obtener todos los
+números de bloques de datos que pertenecen al archivo?. Justifique.
+
+Es mas veloz obtener todos los numeros de bloques en un sistema de archivos UNIX (i-nodos), ya que como el
+i-nodo del archivo deseado ya está en RAM, todos los punteros a los bloques de datos del archivo estan 
+accesibles directamente desde esa estructura. En cambio, en FAT, aunque la tabla este en RAM, se debe 
+recorrer la cadena de clusters uno por uno para obtener todos los bloques de datos, lo que implica
+mas accesos a memoria y mas tiempo si el archivo es grande. Por eso, el sistema de archivos UNIX (i-nodos)
+es mas veloz que un sistema FAT para este caso.
