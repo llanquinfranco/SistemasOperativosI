@@ -6,4 +6,4 @@ void mutex_init(void);
 void mutex_lock(void);
 void mutex_unlock(void);
 
-#endif _MUTEX_H
+#endif /* _MUTEX_H */

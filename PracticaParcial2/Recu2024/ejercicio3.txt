@@ -1,59 +1,59 @@
 3. Responda:
 
-a. Describa el sistema de pasajes de mensajes de XINU, con sus características (si es síncrónico o asincrónico,
-si usa buffer, si no utiliza, etc).
+a. Describa el sistema de pasajes de mensajes de XINU, con sus características (si es síncrónico
+o asincrónico, si usa buffer, si no utiliza, etc).
 
+XINU implementa un sistema de pasaje de mensajes sincronico y sin buffer intermedio en el que cada proceso
+puede tener almacenado como maximo un unico mensaje a la vez. Cuando un proceso quiere enviar un mensaje con
+send(pid,msg) y el receptor ya tiene un pendiente, el emisor se bloquea hasta que el receptor haga un 
+receive() y consuma el mensaje. Del mismo modo, si un proceso hace receive() y no hay mensaje disponible, 
+tambien se bloquea hasta que reciba uno.
+No existe una cola de mensajes ni almacenamiento multiple, lo que hace al sistema mas simple pero tambien 
+limitado para ciertos escenarios. Es eficiente y adecuado para entornos educativos o embebidos donde no se
+necesita un sistema complejo de comunicacion entre procesos.
 
+-----------------------------------------------------------------------------------------------------------
 
+b. Defienda o critique la frase: Debido a que las aplicaciones utilizan el paradigma open-read-write-close
+para acceder a los dispositivos, tanto en XINU como en UNIX (Linux, MAC OS, etc), se hace difícil 
+utilizar los dispositivos, porque se confunden con archivos.
 
+Critica:
+El hecho de que en XINU y UNIX se utilice el paradigma open-read-write-close para acceder tanto a archivos
+como a dispositivos es una ventaja y no una dificultad. Esto se debe a que unifica el tratamiento de 
+distintos recursos bajo un mecanismo comun, simplificando el desarrollo y permitiendo la manipulacion
+de la misma forma sin necesidad de aprender un conjunto diferente de funciones para cada tipo.
+Esta abstraccion no genera confusion, sino que permite escribir codigo mas modular y reutilizable.
 
+-----------------------------------------------------------------------------------------------------------
 
+c. Defienda o critique la frase: Un proceso fue programado con threads. Si un thread realiza un read(),
+y el read() bloquea, todos los threads y el proceso se bloquea.
 
+Critica:
+La afirmacion es incorrecta en el contexto de hilos gestionados por el SO (kernel-level threads), como 
+los POSIX threads en Linux. En este contexto, si un thread se bloquea por un read(), los demas pueden 
+seguir ejecutandose porque el SO los planifica de forma independiente. Solo el hilo que ejecuto el 
+read() queda bloqueado, no el proceso entero.
+Por lo tanto, no necesariamente se bloquean todos los threads ni el proceso completo.
 
+Defensa:
+La afirmacion es correcta en el contexto de hilos gestionados por el usuario (user-level threads), donde
+el SO no distingue entre los diferentes threads dentro de un proceso. En este contexto, si un thread se 
+bloquea por un read(), se bloquea todo el proceso, incluyendo los demas threads, ya que el SO ve al 
+proceso como una unica unidad de ejecucion.
+Por lo tanto, la operacion de E/S bloquea a todos los threads aunque solo uno la haya invocado
 
-
-
-
-
-
-
-
-
-
-b. Defienda o critique la frase: Debido a que las aplicaciones utilizan el paradigma open-read-write-close para
-acceder a los dispositivos, tanto en XINU como en UNIX (Linux, MAC OS, etc), se hace difícil utilizar los
-dispositivos, porque se confunden con archivos.
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-c. Defienda o critique la frase: Un proceso fue programado con threads. Si un thread realiza un read(), y el
-read() bloquea, todos los threads y el proceso se bloquea.
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+-----------------------------------------------------------------------------------------------------------
 
 d. Los desarrolladores de firefox y chrome decidieron que cada “pestaña” sea un proceso, en vez de un
 thread. ¿Por qué piensa que se tomó esta decisión?.
+
+Los desarrolladores de firefox y chrome decidieron que cada “pestaña” sea un proceso en lugar de un thread
+principalmente por razones de seguridad, estabilidad y robustez. Usar procesos permite que si una pestaña
+falla no afecte a las demas, ya que corre en un espacio de memoria distinto. El uso de procesos tambien 
+dificulta que un sitio malicioso acceda a los datos de otras pestañas. Ademas, si una pestaña consume 
+demasiados recursos o "se cuelga", puede finalizarse sin cerrar el navegador completo y sin afectar a las
+demas.
+Aunque esta decision implica un mayor uso de memoria en comparacion con threads, los beneficios que aporta
+en terminos de asilamiento y recuperacion ante errores justifican la eleccion.
