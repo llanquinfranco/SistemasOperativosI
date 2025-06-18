@@ -1,0 +1,30 @@
+a)  1. VERDADERO. Como Android esta basado en UNIX, el estado zombie es
+posible en dicho sistema operativo.
+
+    2. FALSO. Tanto LINUX como Windows utilizan un algoritmo de planificacion
+apropiativo basado en prioridades.
+
+    3. FALSO. Ya que eventualmente los procesos obtendran la CPU. Lo que 
+contradice la definicion de starvation (Un proceso se queda esperando
+INDEFINIDAMENTE por el acceso a un recurso)
+
+
+
+b)  En XINU:
+El estado de un proceso SLEEPING corresponde al estado 'BLOQUEADO SUSPENDIDO'
+El estado de un proceso SUSPENDED corresponde al estado 'LISTO SUSPENDIDO'
+El estado de un proceso CURRENT corresponde al estado 'LISTO'
+
+
+
+c)  XINU utliza el algoritmo Round Robin combinado con prioridades, por
+lo tanto, son verdaderas: 2. y 3.
+
+2. Como los demas procesos tienen menos prioridad, nunca obtendran la CPU, sin
+importar el quantum o demas caracteristicas. Esto se debe a que el algoritmo de
+XINU le da mas importancia a las prioridades
+
+3. Si, los demas procesos podrian intentar, hacer un kill() del proceso con
+alta prioridad para matarlo, pero no lo lograrian, ya que para hacerlo 
+necesitan tener el control de la CPU (nunca ocurrira, por lo explicado
+anteriormente en el inciso anterior)
