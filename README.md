@@ -1,6 +1,6 @@
 # Sistemas Operativos I
 
-En este repositorio se encuentran resueltos los trabajos prácticos de la materia **Sistemas Operativos I**, correspondientes al ciclo lectivo 2025 de la Universidad Nacional del Comahue (UNCo)
+En este repositorio se encuentran resueltos los trabajos prácticos y parciales de la materia **Sistemas Operativos I**, correspondientes al ciclo lectivo 2025 de la Universidad Nacional del Comahue (UNComa)
 
 ## Trabajos Prácticos
 
